@@ -1,9 +1,9 @@
 #!/bin/sh
 NB_THREADS=10
-STEP=0.000001
-DAT_FILE=ex2.dat
-OUT_FILE=./TP_MPI_ex2b.out
-SVG_FILE=ex2_scalability.svg
+RADIUS=20
+DAT_FILE=ex3.dat
+OUT_FILE=./TP_MPI_ex3b.out
+SVG_FILE=ex3_scalability.svg
 
 if [ -f $DAT_FILE ]
 then
@@ -13,7 +13,7 @@ fi
 for i in `seq $NB_THREADS`
 do
     echo "calcul avec $i threads..."
-    mpirun -n $i $OUT_FILE $STEP  >> $DAT_FILE
+    mpirun -n $i $OUT_FILE $RADIUS $i 1 >> $DAT_FILE
 done
 
 echo "generation et affichage des resultats..."

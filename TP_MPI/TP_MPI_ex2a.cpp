@@ -5,6 +5,8 @@
 
 #include <mpi.h>
 
+using namespace std;
+
 // no comment
 int FibonacciMod42(int N)
 {
@@ -28,7 +30,7 @@ double fPi(double x)
 
 // compute numericaly the integral of the function f over the domain [a,b] using step s
 // FibonacciMod42(x*10000) -> otherwise, it would be too easy
-double computeIntegral(std::function<double(double)>f, double a, double b, double s)
+double computeIntegral(function<double(double)>f, double a, double b, double s)
 {
     double r = 0.0;
     unsigned h = 0;
@@ -46,21 +48,21 @@ int main(int argc, char ** argv)
     double step = 1e-6;
     if (argc < 2)
     {
-        std::cout << "no step specified; using " << step << std::endl;
+        cout << "no step specified; using " << step << endl;
     }
     else
     {
-        step = std::stod(argv[1]);
+        step = stod(argv[1]);
     }
 
     // compute 
-    std::chrono::time_point<std::chrono::system_clock> t0 = std::chrono::system_clock::now();
+    chrono::time_point<chrono::system_clock> t0 = chrono::system_clock::now();
     double result = computeIntegral(fPi, 0, 1, step);
-    std::chrono::time_point<std::chrono::system_clock> t1 = std::chrono::system_clock::now();
-    std::chrono::duration<double> computationTime = t1 - t0;
+    chrono::time_point<chrono::system_clock> t1 = chrono::system_clock::now();
+    chrono::duration<double> computationTime = t1 - t0;
 
     // display number of computing thread, result, computation time
-    std::cout << '1' << ' ' << result << ' ' << computationTime.count() << std::endl;
+    cout << '1' << ' ' << result << ' ' << computationTime.count() << endl;
 
     return 0;
 }

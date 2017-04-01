@@ -1,9 +1,10 @@
 #include <iostream>
 #include <mpi.h>
 
+using namespace std;
+
 int main(int argc, char ** argv)
 {
-    // init MPI
     MPI_Init(&argc, &argv);
     int worldSize;
     MPI_Comm_size(MPI_COMM_WORLD, &worldSize);
@@ -19,10 +20,10 @@ int main(int argc, char ** argv)
             char inMsg[50];
             MPI_Status status;
             MPI_Recv(&inMsg, sizeof(inMsg), MPI_CHAR, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &status); 
-            std::cout << "Process #" << status.MPI_SOURCE << " sent: " << inMsg << std::endl;
+            cout << "Process #" << status.MPI_SOURCE << " sent: " << inMsg << endl;
         }
         double t1 = MPI_Wtime();
-        std::cout << "walltime = " << t1 - t0 << " s" << std::endl;
+        cout << "walltime = " << t1 - t0 << " s" << endl;
     }
     else  // other nodes
     {
