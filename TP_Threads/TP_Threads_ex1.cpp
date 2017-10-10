@@ -11,11 +11,14 @@ void noyauCalcul()
 
 int main(int , char ** )
 {
+    std::thread thread1(noyauCalcul);
+    std::thread thread2(noyauCalcul);
     // affiche l'id du thread principal
-    noyauCalcul();
+    // noyauCalcul();
 
     // TODO cree deux threads qui affiche leur id
-
+    thread1.join();
+    thread2.join();
     // TODO attend la fin de l'execution des threads
 
     return 0;

@@ -21,20 +21,62 @@ int main(int argc, char ** argv)
 
     const int NB_REPEAT = 3;
 
-    // blur image using cv::Mat
-    for (int n=0; n<NB_REPEAT; ++n)
+    // // blur image using cv::Mat
+    // for (int n=0; n<NB_REPEAT; ++n)
+    // {
+    //     std::cout << "cv::Mat" << std::endl;
+    //     timePoint_t tp0 = now();
+
+    //     // TODO read image
+    // 	 const char * filename = argv[1];
+    // 	 std::string basename, extension;
+    // 	 getBasenameAndExtension(filename, basename, extension);
+    //      cv::Mat imgInput = cv::imread(filename);
+    // 	 cv::Mat imgMul = imgInput.clone();
+
+    //     // TODO compute gaussian blur
+    // 	 GaussianBlur(imgMul, imgMul,cv::Size(blurSize, blurSize), blurSigma);
+    //     // TODO write image
+    // 	imwrite(basename + "_imgMul" + extension, imgMul);
+    // 	cv::imshow("imgInput", imgInput);
+    // 	cv::imshow("imgMul", imgMul);
+	
+	 
+
+    //     timePoint_t tp3 = now();
+    //     std::cout << "  total: " << duration(tp0, tp3) << " s\n";
+    // }
+
+     for (int n=0; n<NB_REPEAT; ++n)
     {
-        std::cout << "cv::Mat" << std::endl;
+        std::cout << "cv::UMat" << std::endl;
         timePoint_t tp0 = now();
 
         // TODO read image
+	 const char * filename = argv[1];
+	 std::string basename, extension;
+	 getBasenameAndExtension(filename, basename, extension);
+         cv::Mat imgInput = cv::imread(filename);
+	 cv::Mat imgMul = imgInput.clone();
 
         // TODO compute gaussian blur
-
+	 GaussianBlur(imgMul, imgMul,cv::Size(blurSize, blurSize), blurSigma);
         // TODO write image
+	imwrite(basename + "_imgMul" + extension, imgMul);
+	cv::imshow("imgInput", imgInput);
+	cv::imshow("imgMul", imgMul);
+	
+	 
 
         timePoint_t tp3 = now();
         std::cout << "  total: " << duration(tp0, tp3) << " s\n";
+    }
+
+        while (true)
+    {
+        int k = cv::waitKey(100) % 0x100;
+        if (k == 27)
+            break;
     }
 
     return 0;

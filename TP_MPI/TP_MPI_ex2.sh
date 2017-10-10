@@ -1,5 +1,5 @@
 #!/bin/sh
-NB_THREADS=10
+NB_THREADS=5
 STEP=0.000001
 DAT_FILE=ex2.dat
 OUT_FILE=./TP_MPI_ex2b.out

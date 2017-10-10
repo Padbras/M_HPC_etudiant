@@ -31,7 +31,7 @@ int main(int argc, char ** argv)
     // calcule le tableau de donnees
     int nbData = std::stoi(argv[1]);
     std::vector<int> data(nbData); 
-    // TODO
+    #pragma omp parallel for schedule(dynamic, 1)
     for (int i=0; i<nbData; i++)
     {
         data[i] = FibonacciMod42(i);

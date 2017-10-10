@@ -5,7 +5,7 @@
 #include <thread>
 #include <vector>
 
-#include <omp.h>
+#include <omp.h> 
 
 unsigned char& ind(std::vector<unsigned char> & data, int w, int xx, int yy)
 {
